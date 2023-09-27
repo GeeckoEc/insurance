@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet, Image, Text, Pressable } from 'react-native';
-import { AppColors } from '../presentation/theme/theme';
+import { AppColors } from '../presentation/theme/AppTheme';
 
 interface Props {
     icono:       string,
@@ -16,7 +16,7 @@ export const BotonPrimario = ({icono, texto, onPress}:Props) => {
         >
             <Image 
                 style={estilos.EstiloIcono}
-                source={require("../../icons/" + icono + ".svg")}
+                source={require("../../images/icons/" + icono + ".svg")}
             />
             <Text 
                 style={estilos.EstiloTexto}
@@ -35,7 +35,7 @@ export const BotonSecundario = ({icono, texto, onPress}:Props) => {
         >
             <Image 
                 style={estilos.EstiloIcono}
-                source={require("../../icons/" + icono + ".svg")}
+                source={require("../../images/icons/" + icono + ".svg")}
             />
             <Text 
                 style={estilos.EstiloTexto}
@@ -54,7 +54,7 @@ export const BotonPeligro = ({icono, texto, onPress}:Props) => {
         >
             <Image 
                 style={estilos.EstiloIcono}
-                source={require("../../icons/" + icono + ".svg")}
+                source={require("../../images/icons/" + icono + ".svg")}
             />
             <Text 
                 style={estilos.EstiloTexto}
@@ -76,6 +76,7 @@ const estilos = StyleSheet.create({
         flexDirection:      'row',
         flex:               1,
         justifyContent:     'center',
+        minWidth:           140,
     },
     EstiloBotonSecundario:{
         width:              '100%',
@@ -87,6 +88,7 @@ const estilos = StyleSheet.create({
         borderRadius:       5,
         flexDirection:      'row', 
         flex:               1,
+        minWidth:           140,
     },
     EstiloBotonPeligro:{
         width:              '100%',
@@ -101,6 +103,7 @@ const estilos = StyleSheet.create({
         borderStyle:        'solid',
         borderColor:        '#FFFFFF',
         borderWidth:        1,
+        minWidth:           140,
     },
     EstiloTexto:{
         color:              '#FFFFFF',

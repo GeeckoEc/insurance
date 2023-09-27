@@ -1,5 +1,5 @@
 import React from "react";
-import { AppColors } from "../presentation/theme/theme";
+import { AppColors } from "../presentation/theme/AppTheme";
 import { Image, KeyboardType, StyleSheet, Text, TextInput, View } from "react-native";
 
 interface Props {
@@ -21,7 +21,7 @@ export const Campo = ({icono, etiqueta, consejo, valor, propiedad, teclado, entr
             <View style={estilos.EstiloGrupo}>
                 <Image 
                     style={estilos.EstiloIcono} 
-                    source={require("../../icons/" + icono + ".svg")}
+                    source={require("../../images/icons/" + icono + ".svg")}
                 />
                 <Text style={estilos.EstiloEtiqueta}>
                     {etiqueta}

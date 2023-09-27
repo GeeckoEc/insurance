@@ -23,7 +23,7 @@ const Item = ({nombre,  editar, eliminar,}:ItemProps) => (
         <View style={{flex: 1, justifyContent: 'center'}}>
             <Text >{nombre}</Text>
         </View>
-        <View style={{ flex:1,flexDirection:'row'}}>
+        <View style={{flexDirection:'row', width: 310}}>
             <BotonPrimario
                 icono="pen-solid"
                 texto="Editar"

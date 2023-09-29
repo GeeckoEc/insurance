@@ -6,12 +6,14 @@ import { NuevoClienteScreen } from './assets/src/presentation/views/clients/Nuev
 import { InicioScreen } from './assets/src/presentation/views/inicio/inicio';
 import { EditarClienteScreen } from './assets/src/presentation/views/clients/EditarCliente';
 import { ListaClientesScreen } from './assets/src/presentation/views/clients/ListaClientes';
+import { EliminarClienteScreen } from './assets/src/presentation/views/clients/EliminarCliente';
 
 export type RootStackParamList = {
-  InicioScreen:         undefined,
-  ListaClientesScreen:  undefined,
-  NuevoClienteScreen:   undefined,
-  EditarClienteScreen:  undefined,
+  InicioScreen:           undefined,
+  ListaClientesScreen:    undefined,
+  NuevoClienteScreen:     undefined,
+  EditarClienteScreen:    undefined,
+  EliminarClienteScreen:  undefined,
 }
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -36,6 +38,11 @@ const App = () => {
           name      = 'EditarClienteScreen'
           component = {EditarClienteScreen}
           options   = {{title: 'Editar Cliente', headerShown: true}}
+        />
+        <Stack.Screen 
+          name      = 'EliminarClienteScreen'
+          component = {EliminarClienteScreen}
+          options   = {{title: 'Eliminar Cliente', headerShown: true}}
         />
         <Stack.Screen 
           name      = 'ListaClientesScreen'

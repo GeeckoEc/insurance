@@ -46,7 +46,7 @@ export const EditarClienteScreen = () => {
                 <BotonSecundario
                     icono="times-solid"
                     texto="Cancelar"
-                    onPress={() => Navegacion.navigate('InicioScreen')}
+                    onPress={() => Navegacion.navigate('ListaClientesScreen')}
                 />
             </View>
         </View>

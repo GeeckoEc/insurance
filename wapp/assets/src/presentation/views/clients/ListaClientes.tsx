@@ -57,7 +57,7 @@ export const ListaClientesScreen = () => {
                 </View>
                 <FlatList 
                     data = {data}
-                    renderItem={({item}) => <Item nombre={item.nombre} editar={()=>Navegacion.navigate('EditarClienteScreen')} eliminar={()=> alert('pendiente...')}/>}
+                    renderItem={({item}) => <Item nombre={item.nombre} editar={()=>Navegacion.navigate('EditarClienteScreen')} eliminar={()=> Navegacion.navigate('EliminarClienteScreen')}/>}
                     keyExtractor={item => item.id}
                 />
             </SafeAreaView>

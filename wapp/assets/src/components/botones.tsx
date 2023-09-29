@@ -88,6 +88,9 @@ const estilos = StyleSheet.create({
         borderRadius:       5,
         flexDirection:      'row', 
         flex:               1,
+        borderStyle:        'solid',
+        borderColor:        '#FFFFFF',
+        borderWidth:        1,
         minWidth:           140,
     },
     EstiloBotonPeligro:{

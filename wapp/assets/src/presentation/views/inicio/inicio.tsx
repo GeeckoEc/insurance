@@ -15,21 +15,6 @@ export const InicioScreen = () => {
         <View style={Estilos.Contenedor}>
             <View style={Estilos.Menu}>
                 <Text style={Estilos.Titulo}>Menu</Text>
-                <BotonPrimario 
-                    icono='user'
-                    texto='Nuevo Cliente'
-                    onPress={()=>Navegacion.navigate('NuevoClienteScreen')}
-                />
-                <BotonPrimario 
-                    icono='user-edit-solid'
-                    texto='Editar Cliente'
-                    onPress={()=>Navegacion.navigate('EditarClienteScreen')}
-                />
-                <BotonPrimario
-                    icono='male-solid'
-                    texto='Nuevo Agente'
-                    onPress={()=>alert('Test')}
-                />
                 <BotonPrimario
                     icono='users-solid'
                     texto='Clientes'
@@ -63,6 +48,6 @@ const Estilos = StyleSheet.create({
         textTransform:      'uppercase',
         fontSize:           30,
         marginBottom:       20,
-        color:              AppColors.text
+        color:              AppColors.title
     }
 })

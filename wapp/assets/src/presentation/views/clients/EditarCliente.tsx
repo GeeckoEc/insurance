@@ -11,7 +11,7 @@ import { StyleSheet, Text, View } from "react-native";
 
 export const EditarClienteScreen = () => {
     const Navegacion = useNavigation<StackNavigationProp<RootStackParamList>>();
-    const {id, nombre, onChange, guardar} = ViewModel();
+    const {id, nombre, onChange, editar} = ViewModel();
     return (
         <View style={Estilos.Contenendor}>
             <StatusBar style="auto"/>
@@ -41,7 +41,7 @@ export const EditarClienteScreen = () => {
                 <BotonPrimario 
                     icono="save"
                     texto="Guardar"
-                    onPress={() => guardar()}
+                    onPress={() => editar()}
                 />
                 <BotonSecundario
                     icono="times-solid"

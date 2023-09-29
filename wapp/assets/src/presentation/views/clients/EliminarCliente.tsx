@@ -14,6 +14,7 @@ export const EliminarClienteScreen = () => {
     const { id, onChange, eliminar } = ViewModel();
     return (
         <View style={Estilos.Contenedor}>
+            <StatusBar style="auto"/>
             <View style={Estilos.Formulario}>
                 <Text style={Estilos.Titulo}>Eliminar el cliente</Text>
                 <Text style={Estilos.Descripcion}>¿Está seguro de que desea eliminar el cliente con el siguiente ID?</Text>
@@ -30,7 +31,7 @@ export const EliminarClienteScreen = () => {
                 <BotonPeligro 
                     icono           =   "trash-alt-solid"
                     texto           =   "Eliminar"
-                    onPress         =   {() => alert('Eliminar')}
+                    onPress         =   {() => eliminar()}
                 />
                 <BotonSecundario 
                     icono           =   "times-solid"
@@ -54,21 +55,21 @@ const Estilos = StyleSheet.create({
         position:           'absolute',
         left:               '50%',
         marginLeft:         -200,
-        backgroundColor:    AppColors.danger,
-        borderColor:        AppColors.warning,
-        borderWidth:        1,
+        backgroundColor:    AppColors.box,
+        borderColor:        AppColors.danger,
+        borderWidth:        2,
         borderStyle:        'solid',
         borderRadius:       5,
     }, 
     Titulo: {
         textTransform:      'uppercase',
         fontSize:           30,
-        color:              '#FFFFFF',
+        color:              AppColors.title,
         marginBottom:       20,
         textAlign:          'center',
     },
     Descripcion: {
-        color:              '#FFFFFF',
+        color:              AppColors.text,
         marginBottom:       20,
         textAlign:          'center',
     }

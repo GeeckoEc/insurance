@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import { ApiInsurance } from "../../../../data/sources/remote/api/ApiInsurance";
 
 export const NuevoCienteViewModel = () => {
 
@@ -11,12 +12,19 @@ export const NuevoCienteViewModel = () => {
         definirValores({...valores, [propiedad]:valor})
     }
 
-    const guardar = () => {
-        console.log(JSON.stringify(valores))
+    const editar = async () => {
+        //console.log(JSON.stringify(valores))
+        try {
+            console.log(valores);
+            const respuesta = await ApiInsurance.post('/clientes/editar', valores);
+            console.log('Respuesta del servidor: ' + JSON.stringify(respuesta));
+        } catch (error) {
+            console.log('Error: ' + error)
+        }
     };
 
     return {
-        ...valores, onChange, guardar
+        ...valores, onChange, editar
     }
 }
 

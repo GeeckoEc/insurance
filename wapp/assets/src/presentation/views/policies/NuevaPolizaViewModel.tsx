@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import { ApiInsurance } from "../../../../data/sources/remote/api/ApiInsurance";
 
-export const NuevoClienteViewModel = () => {
+export const NuevoPolizaViewModel = () => {
 
     const [valores, definirValores] = useState({
         nombre:     "",
@@ -15,7 +15,7 @@ export const NuevoClienteViewModel = () => {
         // console.log(JSON.stringify(valores))
         try {
             console.log(valores);
-            const respuesta = await ApiInsurance.post('/clientes/insertar', valores);
+            const respuesta = await ApiInsurance.post('/polizas/insertar', valores);
             console.log('Respuesta del servidor: ' + JSON.stringify(respuesta));
         } catch (error) {
             console.log('Error: ' + error)
@@ -27,4 +27,4 @@ export const NuevoClienteViewModel = () => {
     }
 }
 
-export default NuevoClienteViewModel;
+export default NuevoPolizaViewModel;

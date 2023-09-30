@@ -6,22 +6,60 @@ import { Campo } from "../../../components/campos";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../../../../App";
-import ViewModel from "./NuevoClienteViewModel";
-import { StyleSheet, Text, View } from "react-native";
+import ViewModel from "./NuevaPolizaViewModel";
+import { ListItem, StyleSheet, Text, View } from "react-native";
 
-export const NuevoClienteScreen = () => {
+export const NuevoPolizaScreen = () => {
     const Navegacion = useNavigation<StackNavigationProp<RootStackParamList>>();
     const {nombre, onChange, guardar} = ViewModel();
+    const [expanded, setExpanded] = React.useState(false);
     return (
         <View style={Estilos.Contenendor}>
             <StatusBar style="auto"/>
             <View style={Estilos.Formulario}>
-                <Text style={Estilos.Titulo}>Información del nuevo cliente</Text>
-                <Text style={Estilos.Descripcion}>A continuación ingrese los datos solicitados para el nuevo cliente.</Text>
+                <Text style={Estilos.Titulo}>Información de la nueva Poliza</Text>
+                <Text style={Estilos.Descripcion}>A continuación ingrese los datos solicitados para la nueva Poliza.</Text>
+                <ListItem.Accordion
+                    content={
+                    <ListItem.Content>
+                        <ListItem.Title>Top Users</ListItem.Title>
+                        <ListItem.Subtitle>Tap to expand</ListItem.Subtitle>
+                    </ListItem.Content>
+                    }
+                    isExpanded={expanded}
+                    onPress={() => {
+                    setExpanded(!expanded);
+                    }}
+                >
+                    <ListItem>
+                    <Avatar
+                        rounded
+                        source={{
+                        uri: "https://randomuser.me/api/portraits/men/32.jpg",
+                        }}
+                    />
+                    <ListItem.Content>
+                        <ListItem.Title>John Doe</ListItem.Title>
+                        <ListItem.Subtitle>Principle Engineer</ListItem.Subtitle>
+                    </ListItem.Content>
+                    </ListItem>
+                    <ListItem>
+                    <Avatar
+                        rounded
+                        source={{
+                        uri: "https://randomuser.me/api/portraits/men/36.jpg",
+                        }}
+                    />
+                    <ListItem.Content>
+                        <ListItem.Title>Albert</ListItem.Title>
+                        <ListItem.Subtitle>Staff Engineer</ListItem.Subtitle>
+                    </ListItem.Content>
+                    </ListItem>
+                </ListItem.Accordion>
                 <Campo 
                     icono="user"
                     etiqueta="Nombre Completo"
-                    consejo="Ingrese el nombre del cliente."
+                    consejo="Ingrese el nombre del Poliza."
                     valor={nombre}
                     propiedad="nombre"
                     teclado="default"
@@ -36,7 +74,7 @@ export const NuevoClienteScreen = () => {
                 <BotonSecundario
                     icono="times-solid"
                     texto="Cancelar"
-                    onPress={() => Navegacion.navigate('ListaClientesScreen')}
+                    onPress={() => Navegacion.navigate('ListaPolizasScreen')}
                 />
             </View>
         </View>

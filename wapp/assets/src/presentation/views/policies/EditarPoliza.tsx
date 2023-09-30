@@ -6,22 +6,22 @@ import { Campo } from "../../../components/campos";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../../../../App";
-import ViewModel from "./EditarClienteViewModel";
+import ViewModel from "./EditarPolizaViewModel";
 import { StyleSheet, Text, View } from "react-native";
 
-export const EditarClienteScreen = () => {
+export const EditarPolizaScreen = () => {
     const Navegacion = useNavigation<StackNavigationProp<RootStackParamList>>();
     const {id, nombre, onChange, editar} = ViewModel();
     return (
         <View style={Estilos.Contenendor}>
             <StatusBar style="auto"/>
             <View style={Estilos.Formulario}>
-                <Text style={Estilos.Titulo}>Editar Cliente</Text>
-                <Text style={Estilos.Descripción}>A continuación realice los cambios necesarios en la información del cliente.</Text>
+                <Text style={Estilos.Titulo}>Editar Poliza</Text>
+                <Text style={Estilos.Descripción}>A continuación realice los cambios necesarios en la información de la Poliza.</Text>
                 <Campo 
                     icono="id-badge-solid"
-                    etiqueta="ID del Cliente"
-                    consejo="No eliminar el ID del cliente."
+                    etiqueta="ID del Poliza"
+                    consejo="No eliminar el ID del Poliza."
                     valor={id}
                     propiedad="id"
                     teclado="default"
@@ -31,7 +31,7 @@ export const EditarClienteScreen = () => {
                 <Campo 
                     icono="user"
                     etiqueta="Nombre Completo"
-                    consejo="Ingrese el nombre del cliente."
+                    consejo="Ingrese el nombre del Poliza."
                     valor={nombre}
                     propiedad="nombre"
                     teclado="default"
@@ -46,7 +46,7 @@ export const EditarClienteScreen = () => {
                 <BotonSecundario
                     icono="times-solid"
                     texto="Cancelar"
-                    onPress={() => Navegacion.navigate('ListaClientesScreen')}
+                    onPress={() => Navegacion.navigate('ListaPolizasScreen')}
                 />
             </View>
         </View>

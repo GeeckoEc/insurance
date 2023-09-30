@@ -1,20 +1,22 @@
-import React, {useState} from "react";
+import React,{useState} from "react";
 import { ApiInsurance } from "../../../../data/sources/remote/api/ApiInsurance";
 
-export const EliminarClienteViewModel = () => {
+export const EditarPolizaViewModel = () => {
+
     const [valores, definirValores] = useState({
-        id:         '',
-    })
+        id:         "",
+        nombre:     "",
+    });
 
     const onChange = (propiedad: string, valor: any) => {
-        definirValores({ ...valores, [propiedad]:valor });
+        definirValores({...valores, [propiedad]:valor})
     }
 
-    const eliminar = async () => {
+    const editar = async () => {
         //console.log(JSON.stringify(valores))
         try {
             console.log(valores);
-            const respuesta = await ApiInsurance.post('/clientes/eliminar', valores);
+            const respuesta = await ApiInsurance.post('/polizas/editar', valores);
             console.log('Respuesta del servidor: ' + JSON.stringify(respuesta));
         } catch (error) {
             console.log('Error: ' + error)
@@ -22,8 +24,8 @@ export const EliminarClienteViewModel = () => {
     };
 
     return {
-        ...valores, onChange, eliminar
+        ...valores, onChange, editar
     }
 }
 
-export default EliminarClienteViewModel;
+export default EditarPolizaViewModel;

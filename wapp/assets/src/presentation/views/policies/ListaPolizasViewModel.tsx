@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import { ApiInsurance } from "../../../../data/sources/remote/api/ApiInsurance";
 
-export const ListaClientesViewModel = () => {
+export const ListaPolizasViewModel = () => {
 
     const [valores, definirValores] = useState({
         id:     "",
@@ -13,7 +13,7 @@ export const ListaClientesViewModel = () => {
 
     const cargar = async() => {
         return(
-            await ApiInsurance.post('/clientes/listar')
+            await ApiInsurance.post('/polizas/listar')
         )
     }
 
@@ -22,4 +22,4 @@ export const ListaClientesViewModel = () => {
     }
 }
 
-export default ListaClientesViewModel;
+export default ListaPolizasViewModel;

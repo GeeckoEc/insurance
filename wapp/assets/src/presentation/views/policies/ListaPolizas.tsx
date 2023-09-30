@@ -5,7 +5,7 @@ import { BotonPrimario, BotonSecundario, BotonPeligro } from '../../../component
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from '../../../../../App';
-import ViewModel from './ListaClientesViewModel';
+import ViewModel from './ListaPolizasViewModel';
 import {FlatList, SafeAreaView, StyleSheet, Text, View, } from  'react-native';
 
 /*const data = [
@@ -45,7 +45,7 @@ const Item = ({nombre,  editar, eliminar,}:ItemProps) => (
     </View>
 );
 
-export const ListaClientesScreen = /*async*/ () => {
+export const ListaPolizasScreen = /*async*/ () => {
     const Navegacion = useNavigation<StackNavigationProp<RootStackParamList>>();
     //const {id, onChange, cargar}=ViewModel();
     //const datos =  await cargar();
@@ -64,8 +64,8 @@ export const ListaClientesScreen = /*async*/ () => {
                     <View style={{width: 300, marginRight: 20}}>
                         <BotonPrimario
                             icono='user-plus-solid'
-                            texto='Nuevo Cliente'
-                            onPress={()=>Navegacion.navigate('NuevoClienteScreen')}
+                            texto='Nuevo Poliza'
+                            onPress={()=>Navegacion.navigate('NuevaPolizaScreen')}
                         />
                     </View>
                 </View>
@@ -73,7 +73,7 @@ export const ListaClientesScreen = /*async*/ () => {
                     //data = {datos.data.data}
                     data = {data}
                     renderItem={
-                        ({item}) => <Item nombre={item.nombre} editar={()=>Navegacion.navigate('EditarClienteScreen')} eliminar={()=> Navegacion.navigate('EliminarClienteScreen')}/>
+                        ({item}) => <Item nombre={item.nombre} editar={()=>Navegacion.navigate('EditarPolizaScreen')} eliminar={()=> Navegacion.navigate('EliminarPolizaScreen')}/>
                     }
                     keyExtractor={item => item.id}
                 />

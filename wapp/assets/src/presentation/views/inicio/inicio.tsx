@@ -21,7 +21,7 @@ export const InicioScreen = () => {
                     onPress={()=>Navegacion.navigate('ListaClientesScreen')}
                 />
                 <BotonPrimario
-                    icono='users-solid'
+                    icono='user-tie-solid'
                     texto='Agentes'
                     onPress={()=>Navegacion.navigate('ListaAgentesScreen')}
                 />

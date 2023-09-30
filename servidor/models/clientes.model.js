@@ -1,6 +1,6 @@
 const db                =   require('../config/config');
 const ModeloCliente     =   {};
-ModeloCliente.Insertar  =   (cliente, reultado) => {
+ModeloCliente.Insertar  =   (cliente, resultado) => {
     const sql   =   `INSERT INTO clientes (nombre) VALUES (?)`;
     db.query(
         sql, [
@@ -17,7 +17,7 @@ ModeloCliente.Insertar  =   (cliente, reultado) => {
     )
 }
 
-ModeloCliente.Editar  =   (cliente, reultado) => {
+ModeloCliente.Editar  =   (cliente, resultado) => {
     const sql   =   `UPDATE clientes SET nombre=? WHERE id = ?`;
     db.query(
         sql, [
@@ -35,7 +35,7 @@ ModeloCliente.Editar  =   (cliente, reultado) => {
     )
 }
 
-ModeloCliente.Eliminar  =   (cliente, reultado) => {
+ModeloCliente.Eliminar  =   (cliente, resultado) => {
     const sql   =   `DELETE FROM clientes WHERE id = ?`;
     db.query(
         sql, [
@@ -46,6 +46,21 @@ ModeloCliente.Eliminar  =   (cliente, reultado) => {
                 resultado(err, null);
             } else {
                 console.log('El cliente ha sido eliminado: ', res);
+                resultado(null, res);
+            }
+        }
+    )
+}
+
+ModeloCliente.Listar  =   (cliente, resultado) => {
+    const sql   =   `SELECT CONVERT(id, char) AS id, nombre FROM clientes`;
+    db.query(
+        sql, (err, res) => {
+            if (err) {
+                console.log('Hubo un error al conseguir la lista de clientes : ', err);
+                resultado(err, null);
+            } else {
+                console.log(res);
                 resultado(null, res);
             }
         }

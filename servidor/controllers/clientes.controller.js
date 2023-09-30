@@ -52,5 +52,23 @@ module.exports = {
                 data:       datos
             })
         });
+    },
+
+    listar(req, res){
+        const clientes = req.body;   //Captura los datos que evía elcliente.
+        ModeloClientes.Listar(clientes, (err, datos) => {
+            if (err) {
+                return res.status(501).json({
+                    success:    false,
+                    message:    'Ocurrió un error con la lista de clientes: ',
+                    error:      err
+                });
+            }
+            return res.status(200).json({
+                success:    true,
+                message:    'Lista de clientes completada.',
+                data:       datos
+            })
+        });
     }
 };

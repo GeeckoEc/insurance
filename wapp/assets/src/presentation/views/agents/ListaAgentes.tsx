@@ -5,16 +5,12 @@ import { BotonPrimario, BotonSecundario, BotonPeligro } from '../../../component
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from '../../../../../App';
-import ViewModel from './ListaClientesViewModel';
+import ViewModel from './ListaAgentesViewModel';
 import {FlatList, SafeAreaView, StyleSheet, Text, View, } from  'react-native';
 
 const data = [
-    {id: '1', nombre: 'Natalia Torres'},
-    {id: '2', nombre: 'Marcos Oviedo'},
-    {id: '3', nombre: 'Yolanda Tenorio'},
-    {id: '4', nombre: 'Rosa Daquilema'},
-    {id: '5', nombre: 'Tito Pérez'},
-    {id: '6', nombre: 'Vinicio Farías'},
+    {id: '1', nombre: 'Mariuxi Ojeda'},
+    {id: '2', nombre: 'Ronald Zambrano'},
 ]
 //let data:any = []
 /*window.onload = async() => {
@@ -45,7 +41,7 @@ const Item = ({nombre,  editar, eliminar,}:ItemProps) => (
     </View>
 );
 
-export const ListaClientesScreen = /*async*/ () => {
+export const ListaAgentesScreen = /*async*/ () => {
     const Navegacion = useNavigation<StackNavigationProp<RootStackParamList>>();
     //const {id, onChange, cargar}=ViewModel();
     //const datos =  await cargar();
@@ -65,7 +61,7 @@ export const ListaClientesScreen = /*async*/ () => {
                         <BotonPrimario
                             icono='user-plus-solid'
                             texto='Nuevo Cliente'
-                            onPress={()=>Navegacion.navigate('NuevoClienteScreen')}
+                            onPress={()=>Navegacion.navigate('NuevoAgenteScreen')}
                         />
                     </View>
                 </View>
@@ -73,7 +69,7 @@ export const ListaClientesScreen = /*async*/ () => {
                     //data = {datos.data.data}
                     data = {data}
                     renderItem={
-                        ({item}) => <Item nombre={item.nombre} editar={()=>Navegacion.navigate('EditarClienteScreen')} eliminar={()=> Navegacion.navigate('EliminarClienteScreen')}/>
+                        ({item}) => <Item nombre={item.nombre} editar={()=>Navegacion.navigate('EditarAgenteScreen')} eliminar={()=> Navegacion.navigate('EliminarAgenteScreen')}/>
                     }
                     keyExtractor={item => item.id}
                 />

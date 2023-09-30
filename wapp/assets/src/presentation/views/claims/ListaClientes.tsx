@@ -8,20 +8,20 @@ import { RootStackParamList } from '../../../../../App';
 import ViewModel from './ListaClientesViewModel';
 import {FlatList, SafeAreaView, StyleSheet, Text, View, } from  'react-native';
 
-const data = [
+/*const data = [
     {id: '1', nombre: 'Natalia Torres'},
     {id: '2', nombre: 'Marcos Oviedo'},
     {id: '3', nombre: 'Yolanda Tenorio'},
     {id: '4', nombre: 'Rosa Daquilema'},
     {id: '5', nombre: 'Tito Pérez'},
     {id: '6', nombre: 'Vinicio Farías'},
-]
+]*/
 //let data:any = []
-/*window.onload = async() => {
+window.onload = async() => {
     const {id, onChange, cargar}=ViewModel();
     const data = await cargar()
     console.log(data)
-}*/
+}
 
 type ItemProps = {nombre: string, editar: ()=>void, eliminar: ()=>void}
 
@@ -53,7 +53,7 @@ export const ListaClientesScreen = /*async*/ () => {
     //const {id, onChange, cargar}=ViewModel();
     //const datos = await cargar();
     //console.log(datos.data.data)
-    //let data
+    let data
     return(
         <View style={Estilos.Contenedor}>
             <SafeAreaView style={Estilos.Lista}>

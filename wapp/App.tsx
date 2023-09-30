@@ -2,18 +2,33 @@
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native/';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NuevoClienteScreen } from './assets/src/presentation/views/clients/NuevoCliente';
+
 import { InicioScreen } from './assets/src/presentation/views/inicio/inicio';
+
+import { NuevoClienteScreen } from './assets/src/presentation/views/clients/NuevoCliente';
 import { EditarClienteScreen } from './assets/src/presentation/views/clients/EditarCliente';
 import { ListaClientesScreen } from './assets/src/presentation/views/clients/ListaClientes';
 import { EliminarClienteScreen } from './assets/src/presentation/views/clients/EliminarCliente';
 
+import { NuevoAgenteScreen } from './assets/src/presentation/views/agents/NuevoAgente';
+import { EditarAgenteScreen } from './assets/src/presentation/views/agents/EditarAgente';
+import { EliminarAgenteScreen } from './assets/src/presentation/views/agents/EliminarAgente';
+import { ListaAgentesScreen } from './assets/src/presentation/views/agents/ListaAgentes';
+
+
+
 export type RootStackParamList = {
   InicioScreen:           undefined,
+
   ListaClientesScreen:    undefined,
   NuevoClienteScreen:     undefined,
   EditarClienteScreen:    undefined,
   EliminarClienteScreen:  undefined,
+
+  ListaAgentesScreen:     undefined,
+  NuevoAgenteScreen:      undefined,
+  EditarAgenteScreen:     undefined,
+  EliminarAgenteScreen:   undefined,
 }
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -48,6 +63,27 @@ const App = () => {
           name      = 'ListaClientesScreen'
           component = {ListaClientesScreen}
           options   = {{title: 'Clientes Registrados', headerShown: true}}
+        />
+        
+        <Stack.Screen 
+          name      = 'NuevoAgenteScreen'
+          component = {NuevoAgenteScreen}
+          options   = {{title: 'Nuevo Agente', headerShown: true}}
+        />
+        <Stack.Screen 
+          name      = 'EditarAgenteScreen'
+          component = {EditarAgenteScreen}
+          options   = {{title: 'Editar Agente', headerShown: true}}
+        />
+        <Stack.Screen 
+          name      = 'EliminarAgenteScreen'
+          component = {EliminarAgenteScreen}
+          options   = {{title: 'Eliminar Agente', headerShown: true}}
+        />
+        <Stack.Screen 
+          name      = 'ListaAgentesScreen'
+          component = {ListaAgentesScreen}
+          options   = {{title: 'Agentes Registrados', headerShown: true}}
         />
       </Stack.Navigator>
     </NavigationContainer>

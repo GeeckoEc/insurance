@@ -13,7 +13,11 @@ const data = [
     {id: '1', nombre: 'Mariuxi Ojeda'},
     {id: '2', nombre: 'Ronald Zambrano'},
 ]
-
+type DatosProps = {
+    data:any[
+        data:any[]
+    ]
+}
 let datos: any[] = [];
 async function cargar() {
     datos = await ApiInsurance.post('/agentes/listar')
@@ -63,7 +67,11 @@ export const ListaAgentesScreen = /*async*/ () => {
                     data = {datos.data.data}
                     //data = {data}
                     renderItem={
-                        ({item}) => <Item nombre={item.nombre} editar={()=>Navegacion.navigate('EditarAgenteScreen')} eliminar={()=> Navegacion.navigate('EliminarAgenteScreen')}/>
+                        ({item}) => <Item 
+                            nombre={item.nombre} 
+                            editar={()=>Navegacion.navigate('EditarAgenteScreen')} 
+                            eliminar={()=> Navegacion.navigate('EliminarAgenteScreen')}
+                        />
                     }
                     keyExtractor={item => item.id}
                 />

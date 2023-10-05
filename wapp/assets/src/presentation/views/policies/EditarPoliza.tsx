@@ -6,18 +6,48 @@ import { Campo } from "../../../components/campos";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../../../../App";
-import ViewModel from "./EditarPolizaViewModel";
+import   ViewModel from "./EditarPolizaViewModel";
 import { StyleSheet, Text, View } from "react-native";
+import SelectDropdown from "react-native-select-dropdown";
 
 export const EditarPolizaScreen = () => {
     const Navegacion = useNavigation<StackNavigationProp<RootStackParamList>>();
     const {id, nombre, onChange, editar} = ViewModel();
+    const tipos = [
+        'Poliza contra accidentes',
+        'Poliza de bienes raices',
+        'Poliza contra enfermedades,',
+        'Polizas de activos',
+        'Poliza de capila de riesgo',
+    ]
     return (
         <View style={Estilos.Contenendor}>
             <StatusBar style="auto"/>
+
+            
             <View style={Estilos.Formulario}>
                 <Text style={Estilos.Titulo}>Editar Poliza</Text>
                 <Text style={Estilos.Descripción}>A continuación realice los cambios necesarios en la información de la Poliza.</Text>
+                < SelectDropdown
+                    buttonStyle={ Estilos.Selector
+                    }
+                    data = {tipos}
+                    onSelect={(SelectedItem, index) => {
+                        console.log(SelectedItem, index)
+                    }}
+                    buttonTextAfterSelection={
+                        (selectedItem, index) => {
+                            return selectedItem
+                        }
+                    }
+                    rowTextForSelection={
+                        (item, index) => {
+                            return item
+                        }
+                    }
+                    defaultButtonText="Seleccione un tipo."
+                    dropdownIconPosition="right"
+                />
                 <Campo 
                     icono="id-badge-solid"
                     etiqueta="ID del Poliza"
@@ -87,5 +117,14 @@ const Estilos = StyleSheet.create({
         color:          AppColors.text,
         textAlign:      'center',
         marginVertical: 20,
+    },
+    Selector:{
+        backgroundColor:    '#FFFFFF',
+        borderColor:        AppColors.info,
+        borderStyle:        'solid',
+        borderRadius:       5,
+        borderWidth:        1,
+        width:              440,
+        height:             40,
     }
 })

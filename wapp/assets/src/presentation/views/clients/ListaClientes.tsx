@@ -7,25 +7,16 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from '../../../../../App';
 import ViewModel from './ListaClientesViewModel';
 import {FlatList, SafeAreaView, StyleSheet, Text, View, } from  'react-native';
+import { ApiInsurance } from '../../../../data/sources/remote/api/ApiInsurance';
 
-const data = [
-    {id: '1', nombre: 'Natalia Torres'},
-    {id: '2', nombre: 'Marcos Oviedo'},
-    {id: '3', nombre: 'Yolanda Tenorio'},
-    {id: '4', nombre: 'Rosa Daquilema'},
-    {id: '5', nombre: 'Tito Pérez'},
-    {id: '6', nombre: 'Vinicio Farías'},
-]
-//let data:any = []
-/*window.onload = async() => {
-    const {id, onChange, cargar}=ViewModel();
-    const data = await cargar()
-    console.log(data)
-}*/
+let datos: any[] = [];
+async function cargar () {
+    datos = await ApiInsurance.post('/clientes/listar');
+}
+cargar()
+type ItemProps = {definirId: (id:string)=>void, nombre: string, editar: ()=>void, eliminar: ()=>void}
 
-type ItemProps = {nombre: string, editar: ()=>void, eliminar: ()=>void}
-
-const Item = ({nombre,  editar, eliminar,}:ItemProps) => (
+const Item = ({definirId, nombre,  editar, eliminar,}:ItemProps) => (
     <View style={Estilos.Item}>
         <View style={{flex: 1, justifyContent: 'center'}}>
             <Text >{nombre}</Text>
@@ -45,15 +36,9 @@ const Item = ({nombre,  editar, eliminar,}:ItemProps) => (
     </View>
 );
 
-export const ListaClientesScreen = /*async*/ () => {
+export const ListaClientesScreen = () => {
     const Navegacion = useNavigation<StackNavigationProp<RootStackParamList>>();
-    //const {id, onChange, cargar}=ViewModel();
-    //const datos =  await cargar();
-    //console.log(datos.data.data)
-    //const {id, onChange, cargar}=ViewModel();
-    //const datos = await cargar();
-    //console.log(datos.data.data)
-    //let data
+    
     return(
         <View style={Estilos.Contenedor}>
             <SafeAreaView style={Estilos.Lista}>
@@ -70,10 +55,15 @@ export const ListaClientesScreen = /*async*/ () => {
                     </View>
                 </View>
                 <FlatList 
-                    //data = {datos.data.data}
-                    data = {data}
+                    data = {datos.data.data}
                     renderItem={
-                        ({item}) => <Item nombre={item.nombre} editar={()=>Navegacion.navigate('EditarClienteScreen')} eliminar={()=> Navegacion.navigate('EliminarClienteScreen')}/>
+                        ({item}) => 
+                            <Item 
+                                definirId={(id)=>sessionStorage.setItem('id', id)}
+                                nombre={item.nombre} 
+                                editar={()=>Navegacion.navigate('EditarClienteScreen')} 
+                                eliminar={()=> Navegacion.navigate('EliminarClienteScreen')}
+                            />
                     }
                     keyExtractor={item => item.id}
                 />

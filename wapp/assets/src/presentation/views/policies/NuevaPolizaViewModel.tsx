@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import { ApiInsurance } from "../../../../data/sources/remote/api/ApiInsurance";
 
-export const NuevoPolizaViewModel = () => {
+export const NuevaPolizaViewModel = () => {
 
     const [valores, definirValores] = useState({
         nombre:     "",
@@ -27,4 +27,4 @@ export const NuevoPolizaViewModel = () => {
     }
 }
 
-export default NuevoPolizaViewModel;
+export default NuevaPolizaViewModel;

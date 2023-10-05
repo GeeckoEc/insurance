@@ -7,17 +7,18 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from '../../../../../App';
 import ViewModel from './ListaAgentesViewModel';
 import {FlatList, SafeAreaView, StyleSheet, Text, View, } from  'react-native';
+import { ApiInsurance } from '../../../../data/sources/remote/api/ApiInsurance';
 
 const data = [
     {id: '1', nombre: 'Mariuxi Ojeda'},
     {id: '2', nombre: 'Ronald Zambrano'},
 ]
-//let data:any = []
-/*window.onload = async() => {
-    const {id, onChange, cargar}=ViewModel();
-    const data = await cargar()
-    console.log(data)
-}*/
+
+let datos:any[] = [];
+async function cargar() {
+    datos = await ApiInsurance('/agentes/listar')
+}
+cargar()
 
 type ItemProps = {nombre: string, editar: ()=>void, eliminar: ()=>void}
 
@@ -43,13 +44,6 @@ const Item = ({nombre,  editar, eliminar,}:ItemProps) => (
 
 export const ListaAgentesScreen = /*async*/ () => {
     const Navegacion = useNavigation<StackNavigationProp<RootStackParamList>>();
-    //const {id, onChange, cargar}=ViewModel();
-    //const datos =  await cargar();
-    //console.log(datos.data.data)
-    //const {id, onChange, cargar}=ViewModel();
-    //const datos = await cargar();
-    //console.log(datos.data.data)
-    //let data
     return(
         <View style={Estilos.Contenedor}>
             <SafeAreaView style={Estilos.Lista}>
@@ -66,8 +60,8 @@ export const ListaAgentesScreen = /*async*/ () => {
                     </View>
                 </View>
                 <FlatList 
-                    //data = {datos.data.data}
-                    data = {data}
+                    data = {datos.data.data}
+                    //data = {data}
                     renderItem={
                         ({item}) => <Item nombre={item.nombre} editar={()=>Navegacion.navigate('EditarAgenteScreen')} eliminar={()=> Navegacion.navigate('EliminarAgenteScreen')}/>
                     }

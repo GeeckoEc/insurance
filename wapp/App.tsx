@@ -15,7 +15,10 @@ import { EditarAgenteScreen } from './assets/src/presentation/views/agents/Edita
 import { EliminarAgenteScreen } from './assets/src/presentation/views/agents/EliminarAgente';
 import { ListaAgentesScreen } from './assets/src/presentation/views/agents/ListaAgentes';
 
-
+import { NuevaPolizaScreen } from './assets/src/presentation/views/policies/NuevaPoliza';
+import { EditarPolizaScreen } from './assets/src/presentation/views/policies/EditarPoliza';
+import { EliminarPolizaScreen } from './assets/src/presentation/views/policies/EliminarPoliza';
+import { ListaPolizasScreen } from './assets/src/presentation/views/policies/ListaPolizas';
 
 export type RootStackParamList = {
   InicioScreen:           undefined,
@@ -29,6 +32,11 @@ export type RootStackParamList = {
   NuevoAgenteScreen:      undefined,
   EditarAgenteScreen:     undefined,
   EliminarAgenteScreen:   undefined,
+
+  NuevaPolizaScreen:      undefined,
+  EditarPolizaScreen:     undefined,
+  EliminarPolizaScreen:   undefined,
+  ListaPolizasScreen:     undefined,
 }
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -84,6 +92,27 @@ const App = () => {
           name      = 'ListaAgentesScreen'
           component = {ListaAgentesScreen}
           options   = {{title: 'Agentes Registrados', headerShown: true}}
+        />
+
+        <Stack.Screen 
+          name      = 'NuevaPolizaScreen'
+          component = {NuevaPolizaScreen}
+          options   = {{title: 'Nueva Poliza', headerShown: true}}
+        />
+        <Stack.Screen 
+          name      = 'EditarPolizaScreen'
+          component = {EditarPolizaScreen}
+          options   = {{title: 'Editar Poliza', headerShown: true}}
+        />
+        <Stack.Screen 
+          name      = 'EliminarPolizaScreen'
+          component = {EliminarPolizaScreen}
+          options   = {{title: 'Eliminar Poliza', headerShown: true}}
+        />
+        <Stack.Screen 
+          name      = 'ListaPolizasScreen'
+          component = {ListaPolizasScreen}
+          options   = {{title: 'Polizas Registrados', headerShown: true}}
         />
       </Stack.Navigator>
     </NavigationContainer>

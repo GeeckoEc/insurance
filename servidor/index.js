@@ -9,6 +9,7 @@ const port      =   process.env.PORT || 3000;
 // Importar rutas
 
 const RutasClientes = require('./routes/clientes.route');
+const RutasAgentes  = require('./routes/agentes.route');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -31,6 +32,7 @@ app.get('/', (req, res) => {
 // Llamar a rutas de usuario
 
 RutasClientes(app);
+//RutasAgentes(app);
 
 
 /*

@@ -25,6 +25,11 @@ export const InicioScreen = () => {
                     texto='Agentes'
                     onPress={()=>Navegacion.navigate('ListaAgentesScreen')}
                 />
+                <BotonPrimario
+                    icono='signature-solid'
+                    texto='Pólizas'
+                    onPress={()=>Navegacion.navigate('ListaPolizasScreen')}
+                />
             </View>
         </View>        
     )

@@ -5,57 +5,49 @@ import { BotonPrimario, BotonSecundario } from "../../../components/botones";
 import { Campo } from "../../../components/campos";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { RootStackParamList } from "../../../../../App";
+import App, { RootStackParamList } from "../../../../../App";
 import ViewModel from "./NuevaPolizaViewModel";
-import { ListItem, StyleSheet, Text, View } from "react-native";
+import {StyleSheet, Text, View } from "react-native";
+import SelectDropdown from "react-native-select-dropdown";
 
-export const NuevoPolizaScreen = () => {
+export const NuevaPolizaScreen = () => {
     const Navegacion = useNavigation<StackNavigationProp<RootStackParamList>>();
     const {nombre, onChange, guardar} = ViewModel();
     const [expanded, setExpanded] = React.useState(false);
+    const tipos = [
+        'Poliza contra accidentes',
+        'Poliza de bienes raices',
+        'Poliza contra enfermedades,',
+        'Polizas de activos',
+        'Poliza de capila de riesgo',
+    ]
     return (
         <View style={Estilos.Contenendor}>
             <StatusBar style="auto"/>
             <View style={Estilos.Formulario}>
                 <Text style={Estilos.Titulo}>Información de la nueva Poliza</Text>
                 <Text style={Estilos.Descripcion}>A continuación ingrese los datos solicitados para la nueva Poliza.</Text>
-                <ListItem.Accordion
-                    content={
-                    <ListItem.Content>
-                        <ListItem.Title>Top Users</ListItem.Title>
-                        <ListItem.Subtitle>Tap to expand</ListItem.Subtitle>
-                    </ListItem.Content>
+                < SelectDropdown
+                    buttonStyle={ Estilos.Selector
+                        
                     }
-                    isExpanded={expanded}
-                    onPress={() => {
-                    setExpanded(!expanded);
+                    data = {tipos}
+                    onSelect={(selectedItem, index) => {
+                        console.log(selectedItem, index)
                     }}
-                >
-                    <ListItem>
-                    <Avatar
-                        rounded
-                        source={{
-                        uri: "https://randomuser.me/api/portraits/men/32.jpg",
-                        }}
-                    />
-                    <ListItem.Content>
-                        <ListItem.Title>John Doe</ListItem.Title>
-                        <ListItem.Subtitle>Principle Engineer</ListItem.Subtitle>
-                    </ListItem.Content>
-                    </ListItem>
-                    <ListItem>
-                    <Avatar
-                        rounded
-                        source={{
-                        uri: "https://randomuser.me/api/portraits/men/36.jpg",
-                        }}
-                    />
-                    <ListItem.Content>
-                        <ListItem.Title>Albert</ListItem.Title>
-                        <ListItem.Subtitle>Staff Engineer</ListItem.Subtitle>
-                    </ListItem.Content>
-                    </ListItem>
-                </ListItem.Accordion>
+                    buttonTextAfterSelection={
+                        (selectedItem, index) => {
+                            return selectedItem
+                        }
+                    }
+                    rowTextForSelection={
+                        (item, index) => {
+                            return item
+                        }
+                    }
+                    defaultButtonText="Seleccione un tipo."
+                    dropdownIconPosition="right"
+                />
                 <Campo 
                     icono="user"
                     etiqueta="Nombre Completo"
@@ -115,5 +107,14 @@ const Estilos = StyleSheet.create({
         color:              AppColors.text,
         textAlign:          'center',
         marginVertical:     20,
+    }, 
+    Selector:{
+        backgroundColor:    '#FFFFFF',
+        borderColor:        AppColors.info,
+        borderStyle:        'solid',
+        borderRadius:       5,
+        borderWidth:        1,
+        width:              440,
+        height:             40,
     }
 })

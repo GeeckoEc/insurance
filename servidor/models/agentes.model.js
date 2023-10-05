@@ -53,7 +53,7 @@ ModeloAgente.Eliminar  =   (agente, resultado) => {
 }
 
 ModeloAgente.Listar  =   (agente, resultado) => {
-    const sql   =   `SELECT CONVERT(id, char) AS id, nombre FROM agentes`;
+    const sql   =   `SELECT id, nombre FROM agentes`;
     db.query(
         sql, (err, res) => {
             if (err) {

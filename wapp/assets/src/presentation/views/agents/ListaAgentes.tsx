@@ -14,9 +14,9 @@ const data = [
     {id: '2', nombre: 'Ronald Zambrano'},
 ]
 
-let datos:any[] = [];
+let datos: any[] = [];
 async function cargar() {
-    datos = await ApiInsurance('/agentes/listar')
+    datos = await ApiInsurance.post('/agentes/listar')
 }
 cargar()
 

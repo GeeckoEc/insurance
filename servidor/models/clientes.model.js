@@ -53,7 +53,7 @@ ModeloCliente.Eliminar  =   (cliente, resultado) => {
 }
 
 ModeloCliente.Listar  =   (cliente, resultado) => {
-    const sql   =   `SELECT CONVERT(id, char) AS id, nombre FROM clientes`;
+    const sql   =   `SELECT id, nombre FROM clientes`;
     db.query(
         sql, (err, res) => {
             if (err) {

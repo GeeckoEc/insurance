@@ -9,16 +9,8 @@ import ViewModel from './ListaAgentesViewModel';
 import {FlatList, SafeAreaView, StyleSheet, Text, View, } from  'react-native';
 import { ApiInsurance } from '../../../../data/sources/remote/api/ApiInsurance';
 
-const data = [
-    {id: '1', nombre: 'Mariuxi Ojeda'},
-    {id: '2', nombre: 'Ronald Zambrano'},
-]
-type DatosProps = {
-    data:any[
-        data:any[]
-    ]
-}
-let datos: any[] = [];
+
+let datos = [{data:{id:0}}]
 async function cargar() {
     datos = await ApiInsurance.post('/agentes/listar')
 }

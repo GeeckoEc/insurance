@@ -7,8 +7,39 @@ import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import App, { RootStackParamList } from "../../../../../App";
 import ViewModel from "./NuevaPolizaViewModel";
-import {StyleSheet, Text, View } from "react-native";
+import {Image, StyleSheet, Text, View } from "react-native";
 import SelectDropdown from "react-native-select-dropdown";
+import { ApiInsurance } from '../../../../data/sources/remote/api/ApiInsurance';
+
+
+let agentes:any[] = []
+let clientes:any[] = []
+async function cargarAgentes() {
+    agentes = await ApiInsurance.post('/agentes/listar')
+    let nombres:any[] = []
+    let i = 0
+    agentes.data.data.forEach(element => {
+        nombres.push(agentes.data.data[i].nombre)
+        i=i+1
+    });
+    console.log('Agentes: '+nombres)
+    agentes=nombres
+    //console.log(JSON.stringify(agentes.data.data[0].nombre))
+}
+async function cargarClientes() {
+    clientes = await ApiInsurance.post('/clientes/listar')
+    let nombres:any[] = []
+    let i = 0
+    clientes.data.data.forEach(element => {
+        nombres.push(clientes.data.data[i].nombre)
+        i=i+1
+    });
+    console.log('Clientes: ' + nombres)
+    clientes=nombres
+    //console.log(JSON.stringify(agentes.data.data[0].nombre))
+}
+cargarAgentes()
+cargarClientes()
 
 export const NuevaPolizaScreen = () => {
     const Navegacion = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -27,37 +58,88 @@ export const NuevaPolizaScreen = () => {
             <View style={Estilos.Formulario}>
                 <Text style={Estilos.Titulo}>Información de la nueva Poliza</Text>
                 <Text style={Estilos.Descripcion}>A continuación ingrese los datos solicitados para la nueva Poliza.</Text>
-                < SelectDropdown
-                    buttonStyle={ Estilos.Selector
-                        
-                    }
-                    data = {tipos}
-                    onSelect={(selectedItem, index) => {
-                        console.log(selectedItem, index)
-                    }}
-                    buttonTextAfterSelection={
-                        (selectedItem, index) => {
-                            return selectedItem
+                <View style={{flexDirection: 'column', marginBottom: 15,}}>
+                    <View style={{flexDirection:'row'}}>
+                        <Image source={require('../../../../images/icons/file-signature-solid.svg')} style={{width:24, height:24,}}/>
+                        <Text style={{paddingVertical: 2,}}>Tipo de póliza</Text>
+                    </View>
+                    < SelectDropdown
+                        buttonStyle={ Estilos.Selector
+                            
                         }
-                    }
-                    rowTextForSelection={
-                        (item, index) => {
-                            return item
+                        data = {tipos}
+                        onSelect={(selectedItem, index) => {
+                            console.log(selectedItem, index)
+                        }}
+                        buttonTextAfterSelection={
+                            (selectedItem, index) => {
+                                return selectedItem
+                            }
                         }
-                    }
-                    defaultButtonText="Seleccione un tipo."
-                    dropdownIconPosition="right"
-                />
-                <Campo 
-                    icono="user"
-                    etiqueta="Nombre Completo"
-                    consejo="Ingrese el nombre del Poliza."
-                    valor={nombre}
-                    propiedad="nombre"
-                    teclado="default"
-                    entradaSegura={false}
-                    onChangeText={onChange}
-                />
+                        rowTextForSelection={
+                            (item, index) => {
+                                return item
+                            }
+                        }
+                        defaultButtonText="Seleccione un tipo."
+                        dropdownIconPosition="right"
+                    />
+                </View>
+                <View style={{flexDirection: 'column', marginBottom:15,}}>
+                    <View style={{flexDirection:'row'}}>
+                        <Image source={require('../../../../images/icons/user-tie-solid.svg')} style={{width:24, height:24,}}/>
+                        <Text style={{paddingVertical: 2,}}>Agente</Text>
+                    </View>
+                    < SelectDropdown
+                        buttonStyle={ Estilos.Selector
+                            
+                        }
+                        data = {agentes}
+                        onSelect={(selectedItem, index) => {
+                            console.log(selectedItem, index)
+                        }}
+                        buttonTextAfterSelection={
+                            (selectedItem, index) => {
+                                return selectedItem
+                            }
+                        }
+                        rowTextForSelection={
+                            (item, index) => {
+                                return item
+                            }
+                        }
+                        defaultButtonText="Seleccione un agente."
+                        dropdownIconPosition="right"
+                    />
+                </View>
+                
+                <View style={{flexDirection: 'column', marginBottom:15,}}>
+                    <View style={{flexDirection:'row'}}>
+                        <Image source={require('../../../../images/icons/user-solid.svg')} style={{width:24, height:24,}}/>
+                        <Text style={{paddingVertical: 2,}}>Cliente</Text>
+                    </View>
+                    < SelectDropdown
+                        buttonStyle={ Estilos.Selector
+                            
+                        }
+                        data = {clientes}
+                        onSelect={(selectedItem, index) => {
+                            console.log(selectedItem, index)
+                        }}
+                        buttonTextAfterSelection={
+                            (selectedItem, index) => {
+                                return selectedItem
+                            }
+                        }
+                        rowTextForSelection={
+                            (item, index) => {
+                                return item
+                            }
+                        }
+                        defaultButtonText="Seleccione un cliente."
+                        dropdownIconPosition="right"
+                    />
+                </View>
                 <BotonPrimario 
                     icono="save"
                     texto="Guardar"

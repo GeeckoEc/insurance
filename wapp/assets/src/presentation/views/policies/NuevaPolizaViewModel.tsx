@@ -4,7 +4,9 @@ import { ApiInsurance } from "../../../../data/sources/remote/api/ApiInsurance";
 export const NuevaPolizaViewModel = () => {
 
     const [valores, definirValores] = useState({
-        nombre:     "",
+        tipo:       "",
+        agente:     "",
+        cliente:    "",
     });
 
     const onChange = (propiedad: string, valor: any) => {

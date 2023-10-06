@@ -6,7 +6,7 @@ ModeloPoliza.Insertar  =   (poliza, resultado) => {
         sql, [
             poliza.tipo,
             poliza.cliente,
-            poliza.agente,
+            poliza.poliza,
         ], (err, res) => {
             if (err) {
                 console.log('Hubo un error al insertar: ', err);
@@ -19,47 +19,48 @@ ModeloPoliza.Insertar  =   (poliza, resultado) => {
     )
 }
 
-ModeloAgente.Editar  =   (agente, resultado) => {
-    const sql   =   `UPDATE agentes SET nombre=? WHERE id = ?`;
+ModeloPoliza.Editar  =   (poliza, resultado) => {
+    const sql   =   `UPDATE polizas SET tipo=? fk_agente=? fk_cliente=? WHERE id = ?`;
     db.query(
         sql, [
-            agente.nombre,
-            agente.id
+            poliza.tipo,
+            poliza.agente,
+            poliza.cliente,
         ], (err, res) => {
             if (err) {
                 console.log('Hubo un error al editar: ', err);
                 resultado(err, null);
             } else {
-                console.log('El agente ha sido editado: ', res);
+                console.log('La póliza ha sido editada: ', res);
                 resultado(null, res);
             }
         }
     )
 }
 
-ModeloAgente.Eliminar  =   (agente, resultado) => {
-    const sql   =   `DELETE FROM agentes WHERE id = ?`;
+ModeloPoliza.Eliminar  =   (poliza, resultado) => {
+    const sql   =   `DELETE FROM polizas WHERE id = ?`;
     db.query(
         sql, [
-            agente.id
+            poliza.id
         ], (err, res) => {
             if (err) {
                 console.log('Hubo un error al eliminar: ', err);
                 resultado(err, null);
             } else {
-                console.log('El agente ha sido eliminado: ', res);
+                console.log('La póliza ha sido eliminada: ', res);
                 resultado(null, res);
             }
         }
     )
 }
 
-ModeloAgente.Listar  =   (agente, resultado) => {
-    const sql   =   `SELECT id, nombre FROM agentes`;
+ModeloPoliza.Listar  =   (poliza, resultado) => {
+    const sql   =   `SELECT id, nombre FROM polizas`;
     db.query(
         sql, (err, res) => {
             if (err) {
-                console.log('Hubo un error al conseguir la lista de agentes : ', err);
+                console.log('Hubo un error al conseguir la lista de pólizas: ', err);
                 resultado(err, null);
             } else {
                 console.log(res);
@@ -68,4 +69,4 @@ ModeloAgente.Listar  =   (agente, resultado) => {
         }
     )
 }
-module.exports = ModeloAgente;
+module.exports = ModeloPoliza;

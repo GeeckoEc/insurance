@@ -7,28 +7,28 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from '../../../../../App';
 import ViewModel from './ListaPolizasViewModel';
 import {FlatList, SafeAreaView, StyleSheet, Text, View, } from  'react-native';
+import { ApiInsurance } from '../../../../data/sources/remote/api/ApiInsurance';
 
-/*const data = [
-    {id: '1', nombre: 'Natalia Torres'},
-    {id: '2', nombre: 'Marcos Oviedo'},
-    {id: '3', nombre: 'Yolanda Tenorio'},
-    {id: '4', nombre: 'Rosa Daquilema'},
-    {id: '5', nombre: 'Tito Pérez'},
-    {id: '6', nombre: 'Vinicio Farías'},
-]*/
-//let data:any = []
-window.onload = async() => {
-    const {id, onChange, cargar}=ViewModel();
-    const data = await cargar()
-    console.log(data)
+let datos = [{data:{id:0}}]
+async function cargar() {
+    datos = await ApiInsurance.post('/polizas/listar')
 }
+cargar()
 
-type ItemProps = {nombre: string, editar: ()=>void, eliminar: ()=>void}
+type ItemProps = {tipo: string, cliente: string, agente: string, editar: ()=>void, eliminar: ()=>void}
 
-const Item = ({nombre,  editar, eliminar,}:ItemProps) => (
+const Item = ({tipo, agente, cliente,  editar, eliminar,}:ItemProps) => (
     <View style={Estilos.Item}>
         <View style={{flex: 1, justifyContent: 'center'}}>
-            <Text >{nombre}</Text>
+            <Text >{tipo}</Text>
+        </View>
+        
+        <View style={{flex: 1, justifyContent: 'center'}}>
+            <Text >{agente}</Text>
+        </View>
+        
+        <View style={{flex: 1, justifyContent: 'center'}}>
+            <Text >{cliente}</Text>
         </View>
         <View style={{flexDirection:'row', width: 310}}>
             <BotonPrimario
@@ -47,19 +47,14 @@ const Item = ({nombre,  editar, eliminar,}:ItemProps) => (
 
 export const ListaPolizasScreen = /*async*/ () => {
     const Navegacion = useNavigation<StackNavigationProp<RootStackParamList>>();
-    //const {id, onChange, cargar}=ViewModel();
-    //const datos =  await cargar();
-    //console.log(datos.data.data)
-    //const {id, onChange, cargar}=ViewModel();
-    //const datos = await cargar();
-    //console.log(datos.data.data)
-    let data
     return(
         <View style={Estilos.Contenedor}>
             <SafeAreaView style={Estilos.Lista}>
                 <View style={Estilos.Encabezado}>
-                    <View style={{flex: 1,}}>
-                        
+                    <View style={{flex: 1, flexDirection: 'row',}}>
+                        <Text style={Estilos.Encabezados}>Tipo de póliza</Text>
+                        <Text style={Estilos.Encabezados}>Agente</Text>
+                        <Text style={Estilos.Encabezados}>Cliente</Text>
                     </View>
                     <View style={{width: 300, marginRight: 20}}>
                         <BotonPrimario
@@ -71,9 +66,15 @@ export const ListaPolizasScreen = /*async*/ () => {
                 </View>
                 <FlatList 
                     //data = {datos.data.data}
-                    data = {data}
+                    data = {datos.data.data}
                     renderItem={
-                        ({item}) => <Item nombre={item.nombre} editar={()=>Navegacion.navigate('EditarPolizaScreen')} eliminar={()=> Navegacion.navigate('EliminarPolizaScreen')}/>
+                        ({item}) => <Item   
+                                        tipo={item.tipo}
+                                        agente={item.agente}
+                                        cliente={item.cliente}
+                                        editar={()=>Navegacion.navigate('EditarPolizaScreen')} 
+                                        eliminar={()=> Navegacion.navigate('EliminarPolizaScreen')}
+                                    />
                     }
                     keyExtractor={item => item.id}
                 />
@@ -103,5 +104,13 @@ const Estilos = StyleSheet.create({
         paddingVertical:    5,
         paddingHorizontal:  10,
         flexDirection:      'row',
+    },
+    Encabezados:{
+        flex:               1, 
+        paddingTop:         30, 
+        textTransform:      'uppercase', 
+        fontWeight:         '700', 
+        color:              AppColors.title,
+        marginLeft:         10,
     }
 })

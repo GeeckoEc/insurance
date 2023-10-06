@@ -46,11 +46,11 @@ export const NuevaPolizaScreen = () => {
     const {tipo, agente, cliente, onChange, guardar} = ViewModel();
     const [expanded, setExpanded] = React.useState(false);
     const tipos = [
-        'Poliza contra accidentes',
-        'Poliza de bienes raices',
-        'Poliza contra enfermedades,',
-        'Polizas de activos',
-        'Poliza de capila de riesgo',
+        {tipo:'Poliza contra accidentes',id:1},
+        {tipo:'Poliza de bienes raices',id:2},
+        {tipo:'Poliza contra enfermedades,',id:3},
+        {tipo:'Polizas de activos',id:4},
+        {tipo:'Poliza de capila de riesgo',id:5}
     ]
     return (
         <View style={Estilos.Contenendor}>

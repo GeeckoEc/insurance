@@ -56,7 +56,7 @@ ModeloPoliza.Eliminar  =   (poliza, resultado) => {
 }
 
 ModeloPoliza.Listar  =   (poliza, resultado) => {
-    const sql   =   `SELECT id, nombre FROM polizas`;
+    const sql   =   `SELECT polizas.id, polizas.tipo, agentes.nombre AS agente, clientes.nombre AS cliente FROM polizas INNER JOIN agentes ON polizas.fk_agente = agentes.id INNER JOIN clientes ON polizas.fk_cliente = clientes.id`;
     db.query(
         sql, (err, res) => {
             if (err) {

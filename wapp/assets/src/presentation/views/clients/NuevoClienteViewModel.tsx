@@ -15,7 +15,7 @@ export const NuevoClienteViewModel = () => {
         // console.log(JSON.stringify(valores))
         try {
             console.log(valores);
-            const respuesta = await ApiInsurance.post('/polizas/insertar', valores);
+            const respuesta = await ApiInsurance.post('/clientes/insertar', valores);
             console.log('Respuesta del servidor: ' + JSON.stringify(respuesta));
         } catch (error) {
             console.log('Error: ' + error)

@@ -43,7 +43,7 @@ cargarClientes()
 
 export const NuevaPolizaScreen = () => {
     const Navegacion = useNavigation<StackNavigationProp<RootStackParamList>>();
-    const {nombre, onChange, guardar} = ViewModel();
+    const {tipo, agente, cliente, onChange, guardar} = ViewModel();
     const [expanded, setExpanded] = React.useState(false);
     const tipos = [
         'Poliza contra accidentes',
@@ -69,6 +69,7 @@ export const NuevaPolizaScreen = () => {
                         }
                         data = {tipos}
                         onSelect={(selectedItem, index) => {
+                            
                             console.log(selectedItem, index)
                         }}
                         buttonTextAfterSelection={

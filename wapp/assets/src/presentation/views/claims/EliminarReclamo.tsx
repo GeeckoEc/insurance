@@ -7,9 +7,9 @@ import { AppColors } from "../../theme/AppTheme";
 import { BotonPeligro, BotonPrimario, BotonSecundario } from "../../../components/botones";
 import { Campo } from "../../../components/campos";
 import { StyleSheet, Text, View } from "react-native";
-import ViewModel from './EliminarClienteViewModel';
+import ViewModel from './EliminarReclamoViewModel';
 
-export const EliminarClienteScreen = () => {
+export const EliminarReclamoScreen = () => {
     const Navegacion = useNavigation<StackNavigationProp<RootStackParamList>>();
     const { id, onChange, eliminar } = ViewModel();
     return (

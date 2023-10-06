@@ -20,6 +20,11 @@ import { EditarPolizaScreen } from './assets/src/presentation/views/policies/Edi
 import { EliminarPolizaScreen } from './assets/src/presentation/views/policies/EliminarPoliza';
 import { ListaPolizasScreen } from './assets/src/presentation/views/policies/ListaPolizas';
 
+import { NuevoReclamoScreen } from './assets/src/presentation/views/claims/NuevoReclamo';
+import { EditarReclamoScreen } from './assets/src/presentation/views/claims/EditarReclamo';
+import { EliminarReclamoScreen } from './assets/src/presentation/views/claims/EliminarReclamo';
+import { ListaReclamosScreen } from './assets/src/presentation/views/claims/ListaReclamos';
+
 export type RootStackParamList = {
   InicioScreen:           undefined,
 
@@ -37,6 +42,11 @@ export type RootStackParamList = {
   EditarPolizaScreen:     undefined,
   EliminarPolizaScreen:   undefined,
   ListaPolizasScreen:     undefined,
+
+  NuevoReclamoScreen:     undefined,
+  EditarReclamoScreen:    undefined,
+  EliminarReclamoScreen:  undefined,
+  ListaReclamosScreen:    undefined,
 }
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -113,6 +123,27 @@ const App = () => {
           name      = 'ListaPolizasScreen'
           component = {ListaPolizasScreen}
           options   = {{title: 'Polizas Registrados', headerShown: true}}
+        />
+        
+        <Stack.Screen 
+          name      = 'NuevoReclamoScreen'
+          component = {NuevoReclamoScreen}
+          options   = {{title: 'Nuevo Reclamo', headerShown: true}}
+        />
+        <Stack.Screen 
+          name      = 'EditarReclamoScreen'
+          component = {EditarReclamoScreen}
+          options   = {{title: 'Editar Reclamo', headerShown: true}}
+        />
+        <Stack.Screen 
+          name      = 'EliminarReclamoScreen'
+          component = {EliminarReclamoScreen}
+          options   = {{title: 'Eliminar Reclamo', headerShown: true}}
+        />
+        <Stack.Screen 
+          name      = 'ListaReclamosScreen'
+          component = {ListaReclamosScreen}
+          options   = {{title: 'Reclamos Registrados', headerShown: true}}
         />
       </Stack.Navigator>
     </NavigationContainer>

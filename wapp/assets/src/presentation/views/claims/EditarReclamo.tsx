@@ -6,10 +6,10 @@ import { Campo } from "../../../components/campos";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../../../../App";
-import ViewModel from "./EditarClienteViewModel";
+import ViewModel from "./EditarReclamoViewModel";
 import { StyleSheet, Text, View } from "react-native";
 
-export const EditarClienteScreen = () => {
+export const EditarReclamoScreen = () => {
     const Navegacion = useNavigation<StackNavigationProp<RootStackParamList>>();
     const {id, nombre, onChange, editar} = ViewModel();
     return (

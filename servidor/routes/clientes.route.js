@@ -1,6 +1,7 @@
 const ControladorClientes = require('../controllers/clientes.controller');
 const ControladorAgentes = require('../controllers/agentes.controller');
 const ControladorPolizas = require('../controllers/polizas.controller');
+const ControladorReclamos = require('../controllers/reclamos.controller');
 
 module.exports = (app) => {
     app.post('/api/clientes/insertar', ControladorClientes.insertar);
@@ -17,4 +18,9 @@ module.exports = (app) => {
     app.post('/api/polizas/editar', ControladorPolizas.editar);
     app.post('/api/polizas/eliminar', ControladorPolizas.eliminar);
     app.post('/api/polizas/listar', ControladorPolizas.listar);
+    
+    app.post('/api/reclamos/insertar', ControladorReclamos.insertar);
+    app.post('/api/reclamos/editar', ControladorReclamos.editar);
+    app.post('/api/reclamos/eliminar', ControladorReclamos.eliminar);
+    app.post('/api/reclamos/listar', ControladorReclamos.listar);
 }

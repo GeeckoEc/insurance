@@ -30,6 +30,12 @@ export const InicioScreen = () => {
                     texto='Pólizas'
                     onPress={()=>Navegacion.navigate('ListaPolizasScreen')}
                 />
+                <BotonPrimario
+                    icono='money-check-alt-solid'
+                    texto='Reclamos'
+                    onPress={()=>Navegacion.navigate('ListaReclamosScreen')}
+                />
+                
             </View>
         </View>        
     )

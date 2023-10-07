@@ -59,8 +59,8 @@ export const ListaReclamosScreen = () => {
                     <View style={{width: 300, marginRight: 20}}>
                         <BotonPrimario
                             icono='user-plus-solid'
-                            texto='Nuevo Poliza'
-                            onPress={()=>Navegacion.navigate('NuevaPolizaScreen')}
+                            texto='Nuevo Reclamo'
+                            onPress={()=>Navegacion.navigate('NuevoReclamoScreen')}
                         />
                     </View>
                 </View>

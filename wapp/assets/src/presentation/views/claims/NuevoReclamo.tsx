@@ -36,7 +36,7 @@ export const NuevoReclamoScreen = () => {
                 <BotonSecundario
                     icono="times-solid"
                     texto="Cancelar"
-                    onPress={() => Navegacion.navigate('ListaClientesScreen')}
+                    onPress={() => Navegacion.navigate('ListaReclamosScreen')}
                 />
             </View>
         </View>

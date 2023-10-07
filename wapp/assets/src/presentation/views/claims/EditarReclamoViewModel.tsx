@@ -4,8 +4,10 @@ import { ApiInsurance } from "../../../../data/sources/remote/api/ApiInsurance";
 export const EditarClienteViewModel = () => {
 
     const [valores, definirValores] = useState({
-        id:         "",
-        nombre:     "",
+        id:             "",
+        fecha:          "",
+        descripcion:    "",
+        poliza:         "",
     });
 
     const onChange = (propiedad: string, valor: any) => {

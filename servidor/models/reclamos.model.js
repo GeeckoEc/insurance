@@ -56,7 +56,7 @@ ModeloReclamos.Eliminar  =   (reclamo, resultado) => {
 }
 
 ModeloReclamos.Listar  =   (reclamo, resultado) => {
-    const sql   =   `SELECT reclamos.id, reclamos.fecha, reclamos.descripcion, agentes.nombre AS agente, clientes.nombre AS cliente, polizas.tipo FROM reclamos INNER JOIN polizas ON reclamos.fk_poliza = polizas.id INNER JOIN agentes ON polizas.fk_agente = agentes.id INNER JOIN clientes ON polizas.fk_cliente = clientes.id`;
+    const sql   =   `SELECT DATE_FORMAT(reclamos.fecha, "%d %M %Y") AS fecha, reclamos.id, reclamos.fecha, reclamos.descripcion, agentes.nombre AS agente, clientes.nombre AS cliente, polizas.tipo FROM reclamos INNER JOIN polizas ON reclamos.fk_poliza = polizas.id INNER JOIN agentes ON polizas.fk_agente = agentes.id INNER JOIN clientes ON polizas.fk_cliente = clientes.id`;
     db.query(
         sql, (err, res) => {
             if (err) {

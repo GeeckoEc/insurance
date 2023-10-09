@@ -7,10 +7,11 @@ import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../../../../App";
 import ViewModel from "./EditarReclamoViewModel";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Button, Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { ApiInsurance } from "../../../../data/sources/remote/api/ApiInsurance";
 import SelectDropdown from "react-native-select-dropdown";
-import DatePicker from "react-native-date-picker";
+import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
+import { AreaTexto } from "../../../components/areaTexto";
 
 let polizas:any[] = []
 
@@ -22,7 +23,7 @@ async function cargarAgentes() {
         items.push(polizas.data.data[i].cliente /* + ' - ' + polizas.data.data[i].tipo*/)
         i=i+1
     });
-    console.log('polizas: '+items)
+    console.log('reclamos: '+items)
     polizas = items
     //console.log(JSON.stringify(agentes.data.data[0].nombre))
 }
@@ -30,7 +31,7 @@ async function cargarAgentes() {
 export const EditarReclamoScreen = () => {
     const Navegacion = useNavigation<StackNavigationProp<RootStackParamList>>();
     const {id, fecha, descripcion, poliza, onChange, editar} = ViewModel();
-    const [date, setDate] = useState(new Date())
+    
     return (
         <View style={Estilos.Contenendor}>
             <StatusBar style="auto"/>
@@ -47,7 +48,7 @@ export const EditarReclamoScreen = () => {
                     entradaSegura={false}
                     onChangeText={onChange}
                 />
-                <DatePicker date={date} onDateChange={setDate} />
+                
                 <View style={{flexDirection: 'column', marginBottom:15,}}>
                     <View style={{flexDirection:'row'}}>
                         <Image source={require('../../../../images/icons/file-signature-solid.svg')} style={{width:24, height:24,}}/>
@@ -75,14 +76,12 @@ export const EditarReclamoScreen = () => {
                         dropdownIconPosition="right"
                     />
                 </View>
-                <Campo 
-                    icono="user"
-                    etiqueta="Descripción del reclamo"
-                    consejo="Ingrese el nombre del cliente."
+                <AreaTexto
+                    icono="comment"
+                    etiqueta="Descripción"
+                    consejo="Escriba la descripción."
                     valor={descripcion}
                     propiedad="descripcion"
-                    teclado="default"
-                    entradaSegura={false}
                     onChangeText={onChange}
                 />
                 <BotonPrimario 

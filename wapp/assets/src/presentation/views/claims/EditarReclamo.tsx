@@ -12,21 +12,22 @@ import { ApiInsurance } from "../../../../data/sources/remote/api/ApiInsurance";
 import SelectDropdown from "react-native-select-dropdown";
 import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 import { AreaTexto } from "../../../components/areaTexto";
+import { Selector } from "../../../components/selector";
+import { elementoSelector } from "../../../components/elementoSelector";
 
 let polizas:any[] = []
-
-async function cargarAgentes() {
+let items:any[] = []
+async function cargarPolizas() {
     polizas = await ApiInsurance.post('/polizas/listar')
-    let items:any[] = []
     let i = 0
+    let titulo = 'titulo'
+    let id =    'key'
     polizas.data.data.forEach(element => {
-        items.push(polizas.data.data[i].cliente /* + ' - ' + polizas.data.data[i].tipo*/)
+        items.push(polizas.data.data[i].cliente + ' - ' + polizas.data.data[i].tipo)
         i=i+1
     });
-    console.log('reclamos: '+items)
-    polizas = items
-    //console.log(JSON.stringify(agentes.data.data[0].nombre))
 }
+cargarPolizas()
 
 export const EditarReclamoScreen = () => {
     const Navegacion = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -48,34 +49,26 @@ export const EditarReclamoScreen = () => {
                     entradaSegura={false}
                     onChangeText={onChange}
                 />
-                
-                <View style={{flexDirection: 'column', marginBottom:15,}}>
-                    <View style={{flexDirection:'row'}}>
-                        <Image source={require('../../../../images/icons/file-signature-solid.svg')} style={{width:24, height:24,}}/>
-                        <Text style={{paddingVertical: 2,}}>Póliza</Text>
-                    </View>
-                    < SelectDropdown
-                        buttonStyle={ Estilos.Selector
-                            
-                        }
-                        data = {polizas}
-                        onSelect={(selectedItem, index) => {
-                            console.log(selectedItem, index)
-                        }}
-                        buttonTextAfterSelection={
-                            (selectedItem, index) => {
-                                return selectedItem
-                            }
-                        }
-                        rowTextForSelection={
-                            (item, index) => {
-                                return item
-                            }
-                        }
-                        defaultButtonText="Seleccione un agente."
-                        dropdownIconPosition="right"
-                    />
-                </View>
+                <Campo
+                    icono="calendar-solid"
+                    etiqueta="Fecha (aaaa-mm-dd)"
+                    consejo="Ingrese la fecha del reclamo."
+                    teclado="numeric"
+                    valor={fecha}
+                    propiedad="fecha"
+                    entradaSegura={false}
+                    onChangeText={onChange}
+
+                />
+                <Selector
+                    icono="file-signature-solid"
+                    etiqueta="Póliza"
+                    consejo="Seleccione una póliza a reclamar."
+                    valor={poliza}
+                    propiedad="poliza"
+                    datos={items}
+                    onSelect={onChange}
+                />
                 <AreaTexto
                     icono="comment"
                     etiqueta="Descripción"
@@ -134,13 +127,4 @@ const Estilos = StyleSheet.create({
         textAlign:      'center',
         marginVertical: 20,
     },
-    Selector:{
-        backgroundColor:    '#FFFFFF',
-        borderColor:        AppColors.info,
-        borderStyle:        'solid',
-        borderRadius:       5,
-        borderWidth:        1,
-        width:              440,
-        height:             40,
-    }
 })
